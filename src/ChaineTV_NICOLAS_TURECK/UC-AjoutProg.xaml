@@ -1,0 +1,113 @@
+﻿<UserControl x:Class="ChaineTV_NICOLAS_TURECK.UC_AjoutProg"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ChaineTV_NICOLAS_TURECK" DataContext="{Binding Mgr}"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             Loaded="AjoutProg_Loaded"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <SolidColorBrush Color="#FFFF9800" x:Key="buttonBackgroundColor"/>
+    </UserControl.Resources>
+    <Grid Width="700" Height="450" Background="#252525">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="600" TextAlignment="Center" Style="{StaticResource MaterialDesignHeadline2TextBlock}">
+            <Hyperlink IsEnabled="False">
+                 Ajout d'un programme
+            </Hyperlink>
+        </TextBlock>
+        <WrapPanel Grid.Row="1" HorizontalAlignment="Center">
+            <StackPanel HorizontalAlignment="Left"  Margin="20,5,5,5" Width="125">
+                <Label Foreground="White" HorizontalAlignment="Center">Nom du Programme :</Label>
+                <TextBox Margin="5" Background="WHITE" x:Name="Nom"/>
+            </StackPanel>
+            <ComboBox materialDesign:HintAssist.Hint="Type"  Padding="5" Height="32" Background="{StaticResource buttonBackgroundColor}" x:Name="Type">
+                <ComboBoxItem>
+                    Documentaire
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    Film
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    Emission
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    Jeunesse
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    Divertissement
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    Sport
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    JT
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    Série
+                </ComboBoxItem>
+            </ComboBox>
+            <ComboBox  VerticalAlignment="Center" HorizontalAlignment="left" materialDesign:HintAssist.Hint="Chaine" Margin="15,0,0,0"  Padding="5" Height="32" Background="{StaticResource buttonBackgroundColor}" Loaded="Chaines_Loaded" x:Name="Chaine">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding NomC}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </WrapPanel>
+        <Grid HorizontalAlignment="Center" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <WrapPanel Grid.Column="0" Margin="5">
+                <DatePicker Grid.Column="0" Width="125" Height="58" materialDesign:HintAssist.Hint="Date Debut" Style="{StaticResource MaterialDesignOutlinedDatePicker}" Background="{StaticResource buttonBackgroundColor}" Margin="5" x:Name="D_Debut"/>
+                <materialDesign:TimePicker Is24Hours="True" x:Name="H_Debut" Width="100" materialDesign:HintAssist.Hint="Heure"  Background="{StaticResource buttonBackgroundColor}" Margin="5"/>
+            </WrapPanel>
+            <WrapPanel Grid.Column="1">
+                <DatePicker Width="125" Grid.Column="1" materialDesign:HintAssist.Hint="Date Fin" Style="{StaticResource MaterialDesignOutlinedDatePicker}" Background="{StaticResource buttonBackgroundColor}" Margin="5" x:Name="D_Fin"/>
+                <materialDesign:TimePicker Is24Hours="True" x:Name="H_Fin" materialDesign:HintAssist.Hint="Heure" Width="100" Background="{StaticResource buttonBackgroundColor}" Margin="5"/>
+            </WrapPanel>
+        </Grid>
+        <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3">
+            <ComboBox Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Limite d'age :" Margin="15,0,0,0"  Padding="5" Height="32" Background="{StaticResource buttonBackgroundColor}" ItemsSource="{Binding AgeMinimal}" x:Name="LimAge">
+                <ComboBoxItem>
+                    Tout public
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    -10
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    -12
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    -16
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    -18
+                </ComboBoxItem>
+            </ComboBox>
+            <StackPanel  Margin="15,0,0,0" VerticalAlignment="Center">
+                <Label Foreground="White">Lien vers le replay</Label>
+                <TextBox Background="White" Width="100" x:Name="Replay"></TextBox>
+            </StackPanel>
+            <StackPanel Margin="15,0,0,0" VerticalAlignment="Center">
+                <Label Foreground="White">Chemin vers l'image</Label>
+                <TextBox Background="White" Width="100" x:Name="Image"></TextBox>
+            </StackPanel>
+            <StackPanel Margin="15,0,0,0">
+                <Label Foreground="White">Description du programme :</Label>
+                <TextBox Background="White" Width="200" Height="100" x:Name="Description" TextWrapping="Wrap"></TextBox>
+            </StackPanel>
+        </WrapPanel>
+        <Button Grid.Row="4" VerticalAlignment="Center" Width="180" Height="30" Margin="0,0,0,15" Click="AjouterProg_Click">Ajouter le programme</Button>
+    </Grid>
+</UserControl>
